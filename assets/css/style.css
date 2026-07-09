@@ -321,3 +321,95 @@ grid-template-columns:1fr;
 button{
 transition:all .3s ease;
                              }
+
+/* Age Calculator */
+
+.toolContainer{
+max-width:700px;
+margin:60px auto;
+padding:20px;
+}
+
+.toolCard{
+background:#ffffff;
+border-radius:20px;
+padding:35px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+text-align:center;
+}
+
+.toolCard input{
+width:100%;
+padding:16px;
+font-size:18px;
+border:2px solid #dbeafe;
+border-radius:12px;
+margin:20px 0;
+outline:none;
+}
+
+.toolCard input:focus{
+border-color:#2563eb;
+}
+
+.toolCard button{
+background:#2563eb;
+color:#fff;
+padding:15px 30px;
+border-radius:12px;
+font-size:17px;
+font-weight:bold;
+margin:10px 5px;
+}
+
+.toolCard button:hover{
+background:#1d4ed8;
+}
+
+.resultCard{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin-top:30px;
+}
+
+.resultBox{
+background:#2563eb;
+color:#fff;
+padding:20px;
+border-radius:16px;
+}
+
+.resultBox h2{
+font-size:38px;
+margin-bottom:8px;
+}
+
+.resultBox p{
+font-size:15px;
+}
+
+.extraInfo{
+margin-top:25px;
+background:#f8fafc;
+padding:20px;
+border-radius:16px;
+text-align:left;
+line-height:2;
+}
+
+@media(max-width:700px){
+
+.resultCard{
+
+grid-template-columns:1fr;
+
+}
+
+.toolCard{
+
+padding:20px;
+
+}
+
+}
