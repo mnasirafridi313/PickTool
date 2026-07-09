@@ -1,76 +1,120 @@
-const birthDate = document.getElementById("birthDate");
-const calculateAge = document.getElementById("calculateAge");
-const ageResult = document.getElementById("ageResult");
-const copyAge = document.getElementById("copyAge");
+const birthDate=document.getElementById("birthDate");
+const calculateAge=document.getElementById("calculateAge");
+const ageResult=document.getElementById("ageResult");
+const copyAge=document.getElementById("copyAge");
 
-if (calculateAge) {
+function monthName(month){
 
-calculateAge.addEventListener("click", function () {
+const months=[
+"January","February","March","April","May","June",
+"July","August","September","October","November","December"
+];
 
-if (birthDate.value === "") {
+return months[month];
 
-ageResult.textContent = "Please select your birth date.";
+}
+
+if(calculateAge){
+
+calculateAge.addEventListener("click",function(){
+
+if(birthDate.value===""){
+
+ageResult.innerHTML="<p>Please select your birth date.</p>";
 
 return;
 
 }
 
-const birth = new Date(birthDate.value);
-const today = new Date();
+const birth=new Date(birthDate.value);
+const today=new Date();
 
-if (birth > today) {
+if(birth>today){
 
-ageResult.textContent = "Birth date cannot be in the future.";
+ageResult.innerHTML="<p>Birth date cannot be in the future.</p>";
 
 return;
 
 }
 
-let years = today.getFullYear() - birth.getFullYear();
-let months = today.getMonth() - birth.getMonth();
-let days = today.getDate() - birth.getDate();
+let years=today.getFullYear()-birth.getFullYear();
+let months=today.getMonth()-birth.getMonth();
+let days=today.getDate()-birth.getDate();
 
-if (days < 0) {
+if(days<0){
 
 months--;
 
-const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-
-days += previousMonth.getDate();
+days+=new Date(today.getFullYear(),today.getMonth(),0).getDate();
 
 }
 
-if (months < 0) {
+if(months<0){
 
 years--;
 
-months += 12;
+months+=12;
 
 }
 
-ageResult.innerHTML =
-"<strong>Your Age</strong><br>" +
-years + " Years<br>" +
-months + " Months<br>" +
-days + " Days";
+let nextBirthday=new Date(today.getFullYear(),birth.getMonth(),birth.getDate());
+
+if(nextBirthday<today){
+
+nextBirthday.setFullYear(today.getFullYear()+1);
+
+}
+
+const daysLeft=Math.ceil((nextBirthday-today)/(1000*60*60*24));
+
+ageResult.innerHTML=`
+
+<div class="resultCard">
+
+<div class="resultBox">
+<h2>${years}</h2>
+<p>Years</p>
+</div>
+
+<div class="resultBox">
+<h2>${months}</h2>
+<p>Months</p>
+</div>
+
+<div class="resultBox">
+<h2>${days}</h2>
+<p>Days</p>
+</div>
+
+</div>
+
+<div class="extraInfo">
+
+<p><strong>🎂 Date of Birth:</strong> ${birth.getDate()} ${monthName(birth.getMonth())} ${birth.getFullYear()}</p>
+
+<p><strong>🎉 Next Birthday:</strong> ${daysLeft} Days Left</p>
+
+</div>
+
+`;
 
 });
 
 }
 
-if (copyAge) {
+if(copyAge){
 
-copyAge.addEventListener("click", function () {
+copyAge.addEventListener("click",function(){
 
 navigator.clipboard.writeText(ageResult.innerText);
 
-copyAge.textContent = "Copied ✓";
+copyAge.textContent="Copied ✓";
 
-setTimeout(function () {
+setTimeout(function(){
 
-copyAge.textContent = "Copy Result";
+copyAge.textContent="Copy Result";
 
-}, 2000);
+},2000);
 
 });
 
