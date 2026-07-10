@@ -19,30 +19,46 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
+        // 1. Calculate Standard Years, Months, and Days
         let years = today.getFullYear() - birthDate.getFullYear();
         let months = today.getMonth() - birthDate.getMonth();
         let days = today.getDate() - birthDate.getDate();
 
-        // Adjust for negative days
         if (days < 0) {
             months--;
-            // Get the number of days in the previous month
             const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
             days += previousMonth.getDate();
         }
 
-        // Adjust for negative months
         if (months < 0) {
             years--;
             months += 12;
         }
 
-        // Display the final result
+        // 2. Calculate Total Time in Days, Weeks, and Hours
+        const timeDiff = today.getTime() - birthDate.getTime();
+        
+        // Math for exact totals
+        const totalDays = Math.floor(timeDiff / (1000 * 3600 * 24));
+        const totalWeeks = Math.floor(totalDays / 7);
+        const remainingDays = totalDays % 7;
+        const totalHours = Math.floor(timeDiff / (1000 * 3600));
+
+        // 3. Display the final result with the new detailed breakdown
         resultDiv.innerHTML = `
             <strong style="font-size: 20px;">You are:</strong><br>
             <span style="color: #007bff; font-weight: bold; font-size: 18px;">
                 ${years} Years, ${months} Months, and ${days} Days old
             </span>
+            
+            <hr style="margin: 15px 0; border: 0; border-top: 1px dashed #ccc;">
+            
+            <div style="text-align: left; font-size: 14px; line-height: 1.8; color: #444;">
+                <strong>Detailed Breakdown:</strong><br>
+                🗓️ ${totalWeeks.toLocaleString()} Weeks and ${remainingDays} Days<br>
+                ☀️ ${totalDays.toLocaleString()} Total Days<br>
+                ⏱️ ${totalHours.toLocaleString()} Total Hours
+            </div>
         `;
     });
 });
