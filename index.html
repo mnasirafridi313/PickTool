@@ -5,44 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PickTool | Make Life Easiest</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        /* New Styles for your layout */
-        .header { text-align: center; padding: 20px; }
-        .search-bar { width: 90%; max-width: 400px; padding: 10px; margin: 10px auto; border: 1px solid #ccc; border-radius: 20px; display: block; }
-        .nav-menu { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 20px; border-bottom: 2px solid #eee; }
-        .nav-menu a { text-decoration: none; color: #333; font-weight: bold; padding: 10px; }
-        .nav-menu a:hover { color: #007bff; }
-    </style>
 </head>
 <body>
 
-    <div class="header">
+    <header class="header">
         <h1>Welcome to PICKTOOL</h1>
         <p>Make your life from easy to easiest.</p>
-    </div>
+        <input type="text" class="search-bar" placeholder="Search for tools...">
+    </header>
 
-    <input type="text" class="search-bar" placeholder="Search for tools...">
+    <div class="main-wrapper">
+        <!-- Vertical Sidebar Menu -->
+        <nav class="nav-menu">
+            <a href="#calculation">Calculation Tools</a>
+            <a href="#">Image Tools</a>
+            <a href="#">Game</a>
+            <a href="#">Puzzle</a>
+            <a href="#">Logic</a>
+            <a href="#">Surprised</a>
+            <a href="#">About Us</a>
+        </nav>
 
-    <div class="nav-menu">
-        <a href="#calculation">Calculation Tools</a>
-        <a href="#">Image Tools</a>
-        <a href="#">Game</a>
-        <a href="#">Puzzle</a>
-        <a href="#">Logic</a>
-        <a href="#">Surprised</a>
-        <a href="#">About Us</a>
-    </div>
-
-    <div class="home-container" id="calculation">
-        <h2>Calculation Tools</h2>
-        <div class="tool-grid">
-            <a href="tools/age-calculator.html" class="tool-card"><h2>Age Calculator</h2></a>
-            <a href="tools/bmi-calculator.html" class="tool-card"><h2>BMI Calculator</h2></a>
-            <a href="tools/gold-calculator.html" class="tool-card"><h2>Gold Calculator</h2></a>
-            <a href="tools/zakat-calculator.html" class="tool-card"><h2>Zakat & Ushr</h2></a>
-            <a href="tools/discount-calculator.html" class="tool-card"><h2>Discount Calc</h2></a>
-            <a href="tools/complex-calculator.html" class="tool-card"><h2>Complex Calc</h2></a>
-        </div>
+        <!-- Horizontal Content Area -->
+        <main class="content-area" id="calculation">
+            <h2>Calculation Tools</h2>
+            <div class="tool-grid">
+                <a href="tools/age-calculator.html" class="tool-card"><h3>Age Calculator</h3></a>
+                <a href="tools/bmi-calculator.html" class="tool-card"><h3>BMI Calculator</h3></a>
+                <a href="tools/gold-calculator.html" class="tool-card"><h3>Gold Calculator</h3></a>
+                <a href="tools/zakat-calculator.html" class="tool-card"><h3>Zakat & Ushr</h3></a>
+                <a href="tools/discount-calculator.html" class="tool-card"><h3>Discount Calc</h3></a>
+                <a href="tools/complex-calculator.html" class="tool-card"><h3>Complex Calc</h3></a>
+            </div>
+        </main>
     </div>
 
 </body>
