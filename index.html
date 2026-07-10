@@ -1,232 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="theme-color" content="#2563eb">
-
-<meta name="description" content="PickTool provides fast free online calculators converters generators and daily utilities.">
-
-<meta name="keywords" content="PickTool calculator converter age calculator password generator QR code">
-
-<meta name="author" content="M Nasir Afridi">
-
-<title>PickTool | Smart Tools for Everyone</title>
-
-<link rel="stylesheet" href="assets/css/style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PickTool - Essential Everyday Tools</title>
+    <!-- Links to your main design file -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Specific styling just for the homepage grid -->
+    <style>
+        .home-container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .site-title {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .site-description {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .tool-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .tool-card {
+            display: block;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+            transition: all 0.2s ease-in-out;
+        }
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border-color: #007bff;
+        }
+        .tool-card h2 {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 5px;
+        }
+        .tool-card p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .coming-soon {
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            color: #999;
+            font-style: italic;
+        }
+    </style>
 </head>
-
 <body>
 
-<header class="header">
-
-<div class="logo">
-
-<h1>PickTool</h1>
-
-<p>Smart Tools for Everyone</p>
-
-</div>
-
-<button id="menuButton" type="button">
-
-☰
-
-</button>
-
-<nav id="navigation">
-
-<a href="#">Home</a>
-
-<a href="#">Tools</a>
-
-<a href="#">Categories</a>
-
-<a href="#">About</a>
-
-<a href="#">Contact</a>
-
-</nav>
-
-</header>
-
-<section class="hero">
-
-<h1>Everything You Need In One Place</h1>
-
-<p>
-
-Fast Reliable Free Online Tools
-
-</p>
-
-<div class="searchBox">
-
-<input
-type="search"
-id="search"
-placeholder="Search a tool..."
->
-
-<button type="button">
-
-🔍
-
-</button>
-
-</div>
-
-<div class="quickTools">
-
-<button type="button">Age</button>
-
-<button type="button">BMI</button>
-
-<button type="button">Currency</button>
-
-<button type="button">Password</button>
-
-<button type="button">QR Code</button>
-
-<button type="button">More</button>
-
-</div>
-
-</section>
-
-<section class="stats">
-
-<div class="stat">
-
-<h2>100+</h2>
-
-<p>Upcoming Tools</p>
-
-</div>
-
-<div class="stat">
-
-<h2>Fast</h2>
-
-<p>Lightning Performance</p>
-
-</div>
-
-<div class="stat">
-
-<h2>Free</h2>
-
-<p>No Registration</p>
-
-</div>
-
-  </section>
-
-  <section class="featured">
-
-<h2>Featured Tools</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>Age Calculator</h3>
-
-<p>Calculate your exact age in years months and days.</p>
-
-<a href="tools/age-calculator.html">
-
-<button type="button">
-
-Open Tool
-
-</button>
-
-<a href="tools/bmi-calculator.html" class="card">
-
-<h3>BMI Calculator</h3>
-
-<p>Check your Body Mass Index instantly.</p>
-
-<button type="button">Open Tool</button>
-
-</a>
-
-</div>
-
-<div class="card">
-
-<h3>Currency Converter</h3>
-
-<p>Convert currencies with ease.</p>
-
-<button type="button">Open Tool</button>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="categories">
-
-<h2>Browse Categories</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>🧮 Calculators</h3>
-
-<p>Daily calculation tools.</p>
-
-</div>
-
-<div class="card">
-
-<h3>💱 Converters</h3>
-
-<p>Currency and unit converters.</p>
-
-</div>
-
-<div class="card">
-
-<h3>🔐 Security</h3>
-
-<p>Password and QR code generators.</p>
-
-</div>
-
-<div class="card">
-
-<h3>📱 Utilities</h3>
-
-<p>Useful online tools for everyone.</p>
-
-</div>
-
-</div>
-
-</section>
-
-<footer>
-
-<h2>PickTool</h2>
-
-<p>Smart Tools for Everyone</p>
-
-<p>© 2026 PickTool. All Rights Reserved.</p>
-
-</footer>
-
-<script src="assets/js/app.js"></script>
+    <div class="home-container">
+        <h1 class="site-title">PickTool</h1>
+        <p class="site-description">Your fast, simple collection of everyday tools.</p>
+
+        <div class="tool-grid">
+            
+            <!-- Link to your newly created Age Calculator -->
+            <a href="tools/calculation-tools/age-calculator.html" class="tool-card">
+                <h2>Age Calculator</h2>
+                <p>Find out your exact age in years, months, and days.</p>
+            </a>
+
+            <!-- Placeholder for the next tool on your list -->
+            <div class="coming-soon">
+                More tools are being built...
+            </div>
+
+        </div>
+    </div>
 
 </body>
-
-  </html>
+</html>
