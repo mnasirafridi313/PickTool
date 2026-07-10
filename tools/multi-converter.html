@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Converter - PickTool</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Multi-Converter</h1>
+        <div class="input-group">
+            <label for="category">Select Category:</label>
+            <select id="category" class="form-control">
+                <option value="length">Length/Distance</option>
+                <option value="mass">Mass/Weight</option>
+                <option value="volume">Volume</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" placeholder="Enter value" class="form-control">
+        </div>
+        <div class="input-group">
+            <label for="from-unit">From:</label>
+            <select id="from-unit" class="form-control">
+                <!-- Units will be populated by JavaScript -->
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="to-unit">To:</label>
+            <select id="to-unit" class="form-control">
+                <!-- Units will be populated by JavaScript -->
+            </select>
+        </div>
+        <button id="convert-btn">Convert</button>
+        <div id="result" class="result-box"></div>
+        <a href="../index.html" class="back-link">← Back to PickTool Home</a>
+    </div>
+    <script src="../assets/js/multi-converter.js"></script>
+</body>
+</html>
