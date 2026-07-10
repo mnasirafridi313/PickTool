@@ -48,22 +48,28 @@ button {
     transition: transform 0.2s;
 }
 button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
-/* Center Titles and Description */
-.calculator-container h1, .calculator-container p {
+/* --- Global Tool Alignment --- */
+.calculator-container h1, 
+.calculator-container p, 
+.calculator-container .result-box {
     text-align: center;
 }
 
-/* Style the Back Button */
+/* --- Global Back Button Style --- */
 .back-link {
     display: block;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
     padding: 12px;
     background: #f8f9fa;
+    border: 1px solid #e0e0e0;
     border-radius: 12px;
     text-decoration: none;
     color: #2c3e50;
     font-weight: 600;
-    border: 1px solid #e0e0e0;
+    transition: background 0.3s;
 }
-.back-link:hover { background: #e9ecef; }
+
+.back-link:hover {
+    background: #e9ecef;
+}
