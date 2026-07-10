@@ -1,0 +1,34 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const calculateBtn = document.getElementById("calculate-btn");
+    const resultDiv = document.getElementById("result");
+
+    calculateBtn.addEventListener("click", async function() {
+        const amount = parseFloat(document.getElementById("amount").value);
+        const targetCurrency = document.getElementById("currency").value;
+
+        if (isNaN(amount) || amount <= 0) {
+            resultDiv.innerHTML = "<span style='color: red;'>Please enter a valid amount.</span>";
+            return;
+        }
+
+        resultDiv.innerHTML = "Fetching live rates...";
+
+        try {
+            // Using a free, open-source API for live PKR rates
+            const response = await fetch(`https://api.exchangerate-api.com/v4/latest/PKR`);
+            const data = await response.json();
+            const rate = data.rates[targetCurrency];
+            const converted = (amount * rate).toFixed(2);
+            
+            resultDiv.innerHTML = `
+                <strong style="font-size: 16px;">Converted Amount:</strong><br>
+                <span style="color: #007bff; font-weight: bold; font-size: 24px;">
+                    ${converted} ${targetCurrency}
+                </span><br>
+                <small style="color: #777;">(Live rate: 1 PKR = ${rate.toFixed(4)} ${targetCurrency})</small>
+            `;
+        } catch (error) {
+            resultDiv.innerHTML = "<span style='color: red;'>Unable to fetch live rates. Please try again.</span>";
+        }
+    });
+});
