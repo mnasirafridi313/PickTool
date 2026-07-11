@@ -1,55 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>PickTool Table</title>
-    <style>
-        body { background: #000; color: #0f0; font-family: monospace; padding: 20px; }
-        table { border-collapse: collapse; width: 100%; margin-top: 10px; }
-        th, td { border: 1px solid #0f0; padding: 5px; }
-        input, select, button { background: #000; color: #0f0; border: 1px solid #0f0; }
-    </style>
-</head>
+<html>
 <body>
-    <input type="text" id="tableName" placeholder="Table Title">
+    <input type="text" id="title" placeholder="Table Title">
+    <br><br>
+    <button onclick="addCol()">+ Column</button>
     <button onclick="addRow()">+ Row</button>
-    <button onclick="saveData()">💾 Save</button>
-    <button onclick="exportCSV()">📥 Export CSV</button>
-
-    <table id="myTable">
-        <thead><tr><th>SN</th><th>Type</th><th>Val A</th><th>Val B</th><th>Result</th><th>Action</th></tr></thead>
+    <br><br>
+    <table id="tbl" border="1">
+        <thead><tr id="head"><th>SN</th></tr></thead>
         <tbody id="body"></tbody>
     </table>
+    <br>
+    <div id="summary">
+        <p>Total Items: <span id="count">0</span></p>
+        <p>Grand Total (Results): <span id="grandTotal">0</span></p>
+    </div>
 
     <script>
-        let sn = 0;
-        function addRow(valA=0, valB=0) {
-            sn++;
-            let row = document.getElementById('body').insertRow();
-            row.innerHTML = `<td>${sn}</td><td><select><option>Text</option><option>Digit</option><option>Currency</option></select></td><td><input type="number" class="valA" value="${valA}"></td><td><input type="number" class="valB" value="${valB}"></td><td class="res">0</td><td><button onclick="calc(this,'+')">+</button><button onclick="calc(this,'-')">-</button></td>`;
+        let rowCount = 0;
+        let colCount = 0;
+
+        function addCol() {
+            colCount++;
+            let head = document.getElementById('head');
+            let th = document.createElement('th');
+            th.innerHTML = "Col " + colCount;
+            head.appendChild(th);
+            
+            let rows = document.getElementById('body').rows;
+            for(let r of rows) {
+                let cell = r.insertCell(-1);
+                cell.innerHTML = '<input type="number" class="val" oninput="updateSummary()">';
+            }
         }
 
-        function calc(btn, op) {
-            let r = btn.parentElement.parentElement;
-            let a = parseFloat(r.querySelector('.valA').value);
-            let b = parseFloat(r.querySelector('.valB').value);
-            r.querySelector('.res').innerText = (op=='+') ? a+b : a-b;
+        function addRow() {
+            rowCount++;
+            let body = document.getElementById('body');
+            let row = body.insertRow();
+            row.insertCell(0).innerHTML = rowCount;
+            
+            for(let i=0; i<colCount; i++) {
+                row.insertCell(-1).innerHTML = '<input type="number" class="val" oninput="updateSummary()">';
+            }
+            row.insertCell(-1).innerHTML = '<span class="rowTotal">0</span>';
+            updateSummary();
         }
 
-        function saveData() {
-            localStorage.setItem('tableData', document.getElementById('body').innerHTML);
-            alert("Data Saved!");
-        }
-
-        function exportCSV() {
-            let csv = "SN,Type,ValA,ValB,Result\n";
-            // Logic to loop through rows and create CSV string would go here
-            alert("Exporting CSV...");
-        }
-
-        window.onload = () => {
-            let saved = localStorage.getItem('tableData');
-            if(saved) document.getElementById('body').innerHTML = saved;
+        function updateSummary() {
+            let rows = document.querySelectorAll('#body tr');
+            let grand = 0;
+            rows.forEach(r => {
+                let sum = 0;
+                let inputs = r.querySelectorAll('.val');
+                inputs.forEach(i => sum += Number(i.value));
+                r.querySelector('.rowTotal').innerText = sum;
+                grand += sum;
+            });
+            document.getElementById('count').innerText = rowCount;
+            document.getElementById('grandTotal').innerText = grand;
         }
     </script>
 </body>
