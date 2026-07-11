@@ -1,0 +1,66 @@
+<script>
+    let sn = 0;
+
+    // Add a new row
+    function addRow() {
+        sn++;
+        let tbody = document.getElementById('body');
+        let row = tbody.insertRow();
+        row.innerHTML = `
+            <td>${sn}</td>
+            <td><select><option>Text</option><option>Digit</option><option>Currency</option></select></td>
+            <td><input type="number" class="valA" value="0"></td>
+            <td><input type="number" class="valB" value="0"></td>
+            <td class="res">0</td>
+            <td>
+                <button onclick="calc(this, '+')">+</button>
+                <button onclick="calc(this, '-')">-</button>
+                <button onclick="calc(this, '*')">×</button>
+                <button onclick="calc(this, '/')">÷</button>
+                <button onclick="this.parentElement.parentElement.remove()" style="color:red">X</button>
+            </td>
+        `;
+    }
+
+    // Math functions
+    function calc(btn, op) {
+        let row = btn.parentElement.parentElement;
+        let a = parseFloat(row.querySelector('.valA').value) || 0;
+        let b = parseFloat(row.querySelector('.valB').value) || 0;
+        let res = 0;
+        if (op == '+') res = a + b;
+        else if (op == '-') res = a - b;
+        else if (op == '*') res = a * b;
+        else if (op == '/') res = b !== 0 ? a / b : 'Err';
+        row.querySelector('.res').innerText = res.toFixed(2);
+    }
+
+    // Save to browser memory
+    function saveData() {
+        localStorage.setItem('tableData', document.getElementById('body').innerHTML);
+        alert("Table Data Saved!");
+    }
+
+    // Export to Excel/CSV
+    function exportCSV() {
+        let rows = document.querySelectorAll("#body tr");
+        let csv = "SN,Type,ValA,ValB,Result\n";
+        rows.forEach(row => {
+            let cols = row.querySelectorAll("td");
+            csv += `${cols[0].innerText},${cols[1].querySelector('select').value},${cols[2].querySelector('input').value},${cols[3].querySelector('input').value},${cols[4].innerText}\n`;
+        });
+        let blob = new Blob([csv], { type: 'text/csv' });
+        let url = window.URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = "TradingData.csv";
+        a.click();
+    }
+
+    // Load data on start
+    window.onload = () => {
+        let saved = localStorage.getItem('tableData');
+        if (saved) document.getElementById('body').innerHTML = saved;
+    };
+      </script>
+      
