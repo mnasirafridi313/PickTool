@@ -12,11 +12,12 @@ function initGame() {
     tilesLeft = 64;
     selected = null;
     
-    const scoreElement = document.getElementById('score');
-    if (scoreElement) scoreElement.innerText = score;
+    document.getElementById('score').innerText = score;
     
+    // Create the logical grid
     grid = Array(ROWS).fill(null).map(() => Array(COLS).fill(null));
     
+    // Create the deck of fruits
     let deck = [];
     for (let i = 0; i < 16; i++) {
         for (let j = 0; j < 4; j++) deck.push(fruits[i]);
@@ -24,9 +25,9 @@ function initGame() {
     deck.sort(() => Math.random() - 0.5);
     
     const board = document.getElementById('game-board');
-    if (!board) return; // Prevents crashing if HTML isn't found
+    if (!board) return; 
     
-    board.innerHTML = '';
+    board.innerHTML = ''; // Clear previous board
     
     let idx = 0;
     for (let y = 1; y <= 8; y++) {
@@ -154,6 +155,6 @@ function shuffleGrid() {
     }
 }
 
-// Safer trigger: waits for HTML to load before creating the game
-document.addEventListener('DOMContentLoaded', initGame);
-                   
+// Ensures the JavaScript waits for the HTML to fully load before running
+window.addEventListener('load', initGame);
+            
