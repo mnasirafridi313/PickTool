@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PickTool</title>
     <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/style.css">
     <link rel="manifest" href="manifest.json">
     <script>
         if ('serviceWorker' in navigator) {
@@ -18,7 +17,38 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-SNHG53LRH5');
-            </script>
+    </script>
+
+    <!-- Small internal CSS added just for the tabs without disturbing your main style.css -->
+    <style>
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 0 15px;
+        }
+        .tab-btn {
+            background-color: #f1f1f1;
+            border: 2px solid #3b5998;
+            color: #3b5998;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            flex: 1;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background-color: #3b5998;
+            color: white;
+        }
+        .tab-hidden {
+            display: none !important;
+        }
+    </style>
 </head>
     
 <body>
@@ -29,48 +59,51 @@
         <input type="text" id="searchBar" placeholder="🔎 | Tools, Games, Puzzles and More...." class="search-bar">
     </header>
 
-    <!-- Main Tool Grid -->
+    <!-- Tab Navigation -->
+    <div class="tab-container" id="tabContainer">
+        <button class="tab-btn active" data-target="tab-tools" onclick="openTab(event, 'tab-tools')">Tools</button>
+        <button class="tab-btn" data-target="tab-games" onclick="openTab(event, 'tab-games')">Games</button>
+        <button class="tab-btn" data-target="tab-more" onclick="openTab(event, 'tab-more')">More</button>
+    </div>
+
+    <!-- Main Content Area -->
     <main class="container">
-        <div class="tool-grid" id="toolGrid">
+        
+        <!-- 1. TOOLS TAB -->
+        <div class="tool-grid tab-content" id="tab-tools">
             <a href="tools/age-calculator.html" class="tool-card">Age Calculator</a>
             <a href="tools/bmi-calculator.html" class="tool-card">BMI Calculator</a>
             <a href="tools/gold-calculator.html" class="tool-card">Gold Calculator</a>
             <a href="tools/zakat-calculator.html" class="tool-card">Zakat and Ushr Calculator</a>
             <a href="tools/discount-calculator.html" class="tool-card">Discount Calculator</a>
-            <a href="tools/puzzle-game.html" class="tool-card">Flip To Memorize Game</a>
-            <a href="tools/number-guessing-game.html" class="tool-card">Guess under 6 attempts</a>
             <a href="tools/multi-converter.html" class="tool-card">Multi-Converter</a>
             <a href="tools/calendar.html" class="tool-card">Calendar</a>
-            <a href="tools/digit-game.html" class="tool-card">Guess The Next</a>
             <a href="tools/todo-list.html" class="tool-card">Task Manager</a>
             <a href="tools/password-generator.html" class="tool-card">Password Generator</a>
             <a href="tools/trading-journal.html" class="tool-card">Trading Journal</a>
             <a href="tools/table-tool.html" class="tool-card">Data Table</a>
+        </div>
+
+        <!-- 2. GAMES TAB -->
+        <div class="tool-grid tab-content tab-hidden" id="tab-games">
+            <a href="tools/puzzle-game.html" class="tool-card">Flip To Memorize Game</a>
+            <a href="tools/number-guessing-game.html" class="tool-card">Guess under 6 attempts</a>
+            <a href="tools/digit-game.html" class="tool-card">Guess The Next</a>
             <a href="tools/onet-fruit.html" class="tool-card">Onet Fruit Classic</a>
             <a href="tools/chess-game.html" class="tool-card">Chess (PvP)</a>
-            
-            
-            
-            
-            
-            
-            
-            
-            <a href="tools/coming-soon.html" class="tool-card">Coming Soon</a>
-
-<a href="tools/about.html" class="tool-card">About Us</a>
-
-<a href="tools/privacy-policy.html" class="tool-card">Privacy Policy</a>
-
-<a href="tools/terms-and-conditions.html" class="tool-card">Terms & Conditions</a>
-
-<a href="tools/disclaimer.html" class="tool-card">Disclaimer</a>
-
-<a href="tools/rate-us.html" class="tool-card">Rate Us</a>
         </div>
-    </main>
-    
 
+        <!-- 3. MORE TAB -->
+        <div class="tool-grid tab-content tab-hidden" id="tab-more">
+            <a href="tools/coming-soon.html" class="tool-card">Coming Soon</a>
+            <a href="tools/about.html" class="tool-card">About Us</a>
+            <a href="tools/privacy-policy.html" class="tool-card">Privacy Policy</a>
+            <a href="tools/terms-and-conditions.html" class="tool-card">Terms & Conditions</a>
+            <a href="tools/disclaimer.html" class="tool-card">Disclaimer</a>
+            <a href="tools/rate-us.html" class="tool-card">Rate Us</a>
+        </div>
+
+    </main>
     
     <!-- Footer -->
     <footer class="footer">
@@ -78,16 +111,51 @@
         <p>Contact us: mnasirafridi313@gmail.com</p>
     </footer>
 
-
 <meta name="theme-color" content="#3b5998">
-</body>
-</html>
+
+<!-- Javascript for Tabs & Search -->
 <script>
+    // Tab Switching Function
+    function openTab(evt, tabId) {
+        // Hide all tab contents
+        document.querySelectorAll('.tab-content').forEach(tab => {
+            tab.classList.add('tab-hidden');
+        });
+        
+        // Remove active class from all buttons
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Show selected tab and set button to active
+        document.getElementById(tabId).classList.remove('tab-hidden');
+        evt.currentTarget.classList.add('active');
+    }
+
+    // Search Bar logic (Updated to work with Tabs)
     document.getElementById('searchBar').addEventListener('keyup', function() {
         let filter = this.value.toLowerCase();
         let cards = document.querySelectorAll('.tool-card');
+        let tabs = document.querySelectorAll('.tab-content');
+        let tabContainer = document.getElementById('tabContainer');
+        
+        if (filter.length > 0) {
+            // When typing: hide the tab buttons and show ALL grids so the user can search everything at once
+            tabContainer.style.display = 'none';
+            tabs.forEach(tab => tab.classList.remove('tab-hidden'));
+        } else {
+            // When cleared: bring back tab buttons and reset to the currently active tab
+            tabContainer.style.display = 'flex';
+            let activeBtn = document.querySelector('.tab-btn.active');
+            activeBtn.click(); // Re-trigger the active tab to hide the others again
+        }
+
+        // Show/hide individual cards
         cards.forEach(card => {
             card.style.display = card.innerText.toLowerCase().includes(filter) ? "" : "none";
         });
     });
 </script>
+
+</body>
+</html>
