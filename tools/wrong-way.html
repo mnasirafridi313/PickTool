@@ -12,37 +12,37 @@
         .scoreboard { display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: bold; }
         .score-box { padding: 10px; border-radius: 10px; width: 45%; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .red-score { background: #d93838; color: white; opacity: 1; }
-        .blue-score { background: #2d5aa0; color: white; opacity: 0.5; } /* Opacity changes on turn */
+        .blue-score { background: #2d5aa0; color: white; opacity: 0.5; }
         
         .rules { font-size: 0.85em; color: #555; margin-bottom: 15px; text-align: left; background: #f9f9f9; padding: 10px; border-radius: 8px; }
         
         select { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #3b5998; border-radius: 5px; cursor: pointer; }
 
-        /* 17x17 Grid: 9 cells (35px) + 8 wall slots (10px) */
+        /* Updated Board Grid to fit perfectly inside the container */
         #game-board {
             display: grid;
-            grid-template-columns: repeat(8, 35px 10px) 35px;
-            grid-template-rows: repeat(8, 35px 10px) 35px;
+            grid-template-columns: repeat(8, 28px 8px) 28px;
+            grid-template-rows: repeat(8, 28px 8px) 28px;
             background: #e6e6e6;
-            padding: 10px;
+            padding: 8px;
             border-radius: 10px;
-            margin: 0 auto;
-            width: max-content;
+            margin: 15px auto;
+            width: fit-content;
             box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
             border: 2px solid #ccc;
         }
 
-        .cell { background: white; border-radius: 4px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+        .cell { background: white; border-radius: 4px; display: flex; justify-content: center; align-items: center; cursor: pointer; width: 28px; height: 28px; }
         .cell:hover { background: #f0f0f0; }
         
         .wall-slot { background: transparent; cursor: pointer; transition: background 0.2s; }
-        .wall-slot:hover { background: #ffcccc; } /* Preview color */
+        .wall-slot:hover { background: #ffcccc; }
         
         .wall-h { grid-column: span 3; height: 10px; }
         .wall-v { grid-row: span 3; width: 10px; }
         .wall-placed { background: #333 !important; border-radius: 5px; cursor: not-allowed; }
 
-        .player { width: 25px; height: 25px; border-radius: 50%; box-shadow: 0 3px 5px rgba(0,0,0,0.4); }
+        .player { width: 20px; height: 20px; border-radius: 50%; box-shadow: 0 3px 5px rgba(0,0,0,0.4); }
         .player-red { background: radial-gradient(circle at 30% 30%, #ff6b6b, #d93838); }
         .player-blue { background: radial-gradient(circle at 30% 30%, #6b9fff, #2d5aa0); }
 
@@ -80,7 +80,10 @@
     </div>
     
     <div class="status-msg" id="status-msg">Red's Turn</div>
-    <button onclick="resetGame()" style="margin-top: 15px; width: 100%; padding: 10px; background: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">🔄 Restart Game</button>
+
+    <button onclick="resetGame()" style="display: block; width: 100%; margin-top: 20px; margin-bottom: 15px; padding: 12px; background: #e74c3c; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1em;">
+        🔄 Restart Game
+    </button>
     
     <a href="../index.html" class="back-link">← Back to PickTool Home</a>
 </div>
