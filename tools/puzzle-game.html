@@ -40,6 +40,8 @@
             font-weight: bold;
             font-size: 16px;
         }
+        /* Ad container styling */
+        .ad-container { margin-top: 25px; text-align: center; }
     </style>
 </head>
 <body>
@@ -57,6 +59,20 @@
         <button id="restart-btn">Restart Game</button>
         
         <a href="../index.html" class="back-link">← Back to PickTool Home</a>
+
+        <!-- Non-intrusive game ad placement -->
+        <div class="ad-container">
+            <script>
+                atOptions = {
+                    'key' : 'be0e2dff2e618dbdd1d0dd94294cffc8',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highperformanceformat.com/be0e2dff2e618dbdd1d0dd94294cffc8/invoke.js"></script>
+        </div>
     </div>
 
     <!-- Links to the game logic -->
