@@ -62,6 +62,9 @@
             font-size: 1.1em;
         }
         .back-link:hover { text-decoration: underline; }
+        
+        /* Ad container styling */
+        .ad-container { margin-top: 30px; text-align: center; }
     </style>
 </head>
 <body>
@@ -83,6 +86,20 @@
 
     <button class="reset-btn" onclick="resetGame()">🔄 Restart Game</button>
     <a href="../index.html" class="back-link">← Back to PickTool</a>
+
+    <!-- Non-intrusive ad placement -->
+    <div class="ad-container">
+        <script>
+            atOptions = {
+                'key' : 'be0e2dff2e618dbdd1d0dd94294cffc8',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script src="https://www.highperformanceformat.com/be0e2dff2e618dbdd1d0dd94294cffc8/invoke.js"></script>
+    </div>
 
     <!-- Link to the JS file -->
     <script src="../assets/js/tic-tac-toe.js"></script>
